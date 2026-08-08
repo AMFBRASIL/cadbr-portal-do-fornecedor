@@ -1,6 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowRight, ExternalLink } from "lucide-react";
-import { ARTICLES, getArticle } from "@/lib/articles";
+import { ARTICLES, getArticle, type Article } from "@/lib/articles";
 import { CATEGORIES, SITE } from "@/lib/site";
 import { Breadcrumbs } from "@/components/site/breadcrumbs";
 import { Button } from "@/components/ui/button";
@@ -21,7 +21,7 @@ export const Route = createFileRoute("/conteudos/$slug")({
   },
   component: ArticlePage,
   head: ({ params, loaderData }) => {
-    const article = loaderData?.article;
+    const article = loaderData?.article as Article | undefined;
     if (!article) return {};
     const url = `/conteudos/${params.slug}`;
     return {
@@ -78,7 +78,7 @@ export const Route = createFileRoute("/conteudos/$slug")({
 });
 
 function ArticlePage() {
-  const { article } = Route.useLoaderData();
+  const { article } = Route.useLoaderData() as { article: Article };
   const { openTriage } = useTriage();
   const category = CATEGORIES.find((c) => c.id === article.ctaCategory);
   const related = article.related
