@@ -16,6 +16,7 @@ import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-
 import { Route as TermosDeUsoRouteImport } from './routes/termos-de-uso'
 import { Route as ConteudosIndexRouteImport } from './routes/conteudos.index'
 import { Route as ConteudosSlugRouteImport } from './routes/conteudos.$slug'
+import { Route as ApiPublicTriagemRouteImport } from './routes/api/public/triagem'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -52,6 +53,11 @@ const ConteudosSlugRoute = ConteudosSlugRouteImport.update({
   path: '/conteudos/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicTriagemRoute = ApiPublicTriagemRouteImport.update({
+  id: '/api/public/triagem',
+  path: '/api/public/triagem',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -61,6 +67,7 @@ export interface FileRoutesByFullPath {
   '/termos-de-uso': typeof TermosDeUsoRoute
   '/conteudos/$slug': typeof ConteudosSlugRoute
   '/conteudos/': typeof ConteudosIndexRoute
+  '/api/public/triagem': typeof ApiPublicTriagemRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -70,6 +77,7 @@ export interface FileRoutesByTo {
   '/termos-de-uso': typeof TermosDeUsoRoute
   '/conteudos/$slug': typeof ConteudosSlugRoute
   '/conteudos': typeof ConteudosIndexRoute
+  '/api/public/triagem': typeof ApiPublicTriagemRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -80,6 +88,7 @@ export interface FileRoutesById {
   '/termos-de-uso': typeof TermosDeUsoRoute
   '/conteudos/$slug': typeof ConteudosSlugRoute
   '/conteudos/': typeof ConteudosIndexRoute
+  '/api/public/triagem': typeof ApiPublicTriagemRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -91,6 +100,7 @@ export interface FileRouteTypes {
     | '/termos-de-uso'
     | '/conteudos/$slug'
     | '/conteudos/'
+    | '/api/public/triagem'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -100,6 +110,7 @@ export interface FileRouteTypes {
     | '/termos-de-uso'
     | '/conteudos/$slug'
     | '/conteudos'
+    | '/api/public/triagem'
   id:
     | '__root__'
     | '/'
@@ -109,6 +120,7 @@ export interface FileRouteTypes {
     | '/termos-de-uso'
     | '/conteudos/$slug'
     | '/conteudos/'
+    | '/api/public/triagem'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -119,6 +131,7 @@ export interface RootRouteChildren {
   TermosDeUsoRoute: typeof TermosDeUsoRoute
   ConteudosSlugRoute: typeof ConteudosSlugRoute
   ConteudosIndexRoute: typeof ConteudosIndexRoute
+  ApiPublicTriagemRoute: typeof ApiPublicTriagemRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -172,6 +185,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ConteudosSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/triagem': {
+      id: '/api/public/triagem'
+      path: '/api/public/triagem'
+      fullPath: '/api/public/triagem'
+      preLoaderRoute: typeof ApiPublicTriagemRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -183,6 +203,7 @@ const rootRouteChildren: RootRouteChildren = {
   TermosDeUsoRoute: TermosDeUsoRoute,
   ConteudosSlugRoute: ConteudosSlugRoute,
   ConteudosIndexRoute: ConteudosIndexRoute,
+  ApiPublicTriagemRoute: ApiPublicTriagemRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
