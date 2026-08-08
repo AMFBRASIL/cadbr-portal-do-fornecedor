@@ -6,14 +6,14 @@ import { SITE } from "@/lib/site";
 import { useTriage } from "./triage-context";
 import { Logo } from "./logo";
 
-const NAV = [
-  { label: "Início", to: "/", hash: undefined },
+const NAV: { label: string; to: "/" | "/conteudos"; hash?: string }[] = [
+  { label: "Início", to: "/" },
   { label: "Como participar", to: "/", hash: "como-funciona" },
   { label: "SICAF", to: "/", hash: "sicaf" },
   { label: "Licitações", to: "/", hash: "oportunidades" },
   { label: "Para fornecedores", to: "/", hash: "credibilidade" },
-  { label: "Conteúdos", to: "/conteudos", hash: undefined },
-] as const;
+  { label: "Conteúdos", to: "/conteudos" },
+];
 
 export function Header() {
   const { openTriage } = useTriage();
@@ -58,7 +58,7 @@ export function Header() {
               <Link
                 key={item.label}
                 to={item.to}
-                hash={item.hash}
+                {...(item.hash ? { hash: item.hash } : {})}
                 className="rounded-lg px-3 py-2 text-sm font-semibold text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
               >
                 {item.label}
@@ -92,7 +92,7 @@ export function Header() {
               <li key={item.label}>
                 <Link
                   to={item.to}
-                  hash={item.hash}
+                  {...(item.hash ? { hash: item.hash } : {})}
                   onClick={() => setMobileOpen(false)}
                   className="block rounded-lg px-3 py-3 text-sm font-semibold hover:bg-secondary"
                 >
