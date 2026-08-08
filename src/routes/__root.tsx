@@ -11,6 +11,13 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { SITE } from "@/lib/site";
+import { Header } from "@/components/site/header";
+import { Footer } from "@/components/site/footer";
+import { TriageProvider } from "@/components/site/triage-context";
+import { TriageDialog } from "@/components/site/triage-dialog";
+import { CookieConsent } from "@/components/site/cookie-consent";
+import { Toaster } from "@/components/ui/sonner";
 
 function NotFoundComponent() {
   return (
