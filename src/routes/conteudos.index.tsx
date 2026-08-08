@@ -9,7 +9,7 @@ export const Route = createFileRoute("/conteudos/")({
   component: ConteudosPage,
   head: () => ({
     meta: [
-      { title: "Central de Conhecimento sobre Licitações | Licita Certa" },
+      { title: `Central de Conhecimento sobre Licitações | ${SITE.name}` },
       {
         name: "description",
         content:
