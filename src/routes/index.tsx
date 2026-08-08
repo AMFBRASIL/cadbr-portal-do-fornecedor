@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { SITE } from "@/lib/site";
 import {
   ArrowRight,
   BadgeCheck,
