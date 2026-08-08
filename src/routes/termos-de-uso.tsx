@@ -1,28 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LegalPage } from "@/components/site/legal-page";
 import { LEGAL_DISCLAIMER, SITE } from "@/lib/site";
+import { buildPageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/termos-de-uso")({
   component: TermsPage,
-  head: () => ({
-    meta: [
-      { title: `Termos de Uso | ${SITE.name}` },
-      {
-        name: "description",
-        content:
-          "Condições de uso do portal de orientação sobre licitações, SICAF e Compras.gov.br, incluindo limites de responsabilidade.",
-      },
-      { property: "og:title", content: "Termos de Uso" },
-      {
-        property: "og:description",
-        content: "Condições de uso do portal independente de orientação sobre licitações.",
-      },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "/termos-de-uso" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-    links: [{ rel: "canonical", href: "/termos-de-uso" }],
-  }),
+  head: () =>
+    buildPageHead({
+      title: `Termos de Uso | ${SITE.name}`,
+      description:
+        "Condições de uso do portal de orientação sobre licitações, SICAF e Compras.gov.br, incluindo limites de responsabilidade.",
+      path: "/termos-de-uso",
+    }),
 });
 
 function TermsPage() {

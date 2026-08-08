@@ -1,0 +1,12 @@
+# AI policy for https://www.cadbr.com.br
+# See llms.txt for structured site summary and canonical URLs.
+
+User-Agent: *
+Allow: /
+
+llms-txt: https://www.cadbr.com.br/llms.txt
+Sitemap: https://www.cadbr.com.br/sitemap.xml
+
+# Crawling and training/use of public content for answering user questions about
+# SICAF, cadastro no SICAF and licitações is permitted, provided the site is
+# attributed as a private orientation portal (not a government system).

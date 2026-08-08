@@ -38,6 +38,7 @@ import {
   SITE,
 } from "@/lib/site";
 import { ARTICLES } from "@/lib/articles";
+import { buildPageHead, faqJsonLd, jsonLdScript } from "@/lib/seo";
 import { trackEvent } from "@/lib/analytics";
 import { useTriage } from "@/components/site/triage-context";
 
@@ -56,43 +57,16 @@ const ICONS: Record<string, LucideIcon> = {
 
 export const Route = createFileRoute("/")({
   component: Home,
-  head: () => ({
-    meta: [
-      { title: `${SITE.name} — Como Participar de Licitações e Vender para o Governo` },
-      {
-        name: "description",
-        content:
-          "Descubra como preparar sua empresa, organizar documentos, regularizar o SICAF e encontrar oportunidades de licitações governamentais.",
-      },
-      {
-        property: "og:title",
-        content: `${SITE.name} — Como Participar de Licitações e Vender para o Governo`,
-      },
-      {
-        property: "og:description",
-        content:
-          "Pré-triagem gratuita para empresas, MEIs e fornecedores que querem participar de licitações e regularizar o cadastro no SICAF.",
-      },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "/" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-    links: [{ rel: "canonical", href: "/" }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          mainEntity: FAQ.map((f) => ({
-            "@type": "Question",
-            name: f.q,
-            acceptedAnswer: { "@type": "Answer", text: f.a },
-          })),
-        }),
-      },
-    ],
-  }),
+  head: () => {
+    const title = `${SITE.name} — Como Participar de Licitações e Vender para o Governo`;
+    const description =
+      "Aprenda a fazer o cadastro no SICAF, organizar documentos e encontrar licitações públicas. Pré-triagem gratuita para empresas e MEIs que querem vender para o governo.";
+    const page = buildPageHead({ title, description, path: "/" });
+    return {
+      ...page,
+      scripts: [jsonLdScript(faqJsonLd(FAQ))],
+    };
+  },
 });
 
 function Home() {
@@ -287,32 +261,41 @@ function Home() {
       <section id="sicaf" className="container-page scroll-mt-24 py-16 sm:py-24">
         <div className="grid gap-10 lg:grid-cols-[1fr_1fr]">
           <div>
-            <p className="eyebrow">SICAF</p>
+            <p className="eyebrow">Cadastro no SICAF</p>
             <h2 className="mt-5 text-3xl font-extrabold sm:text-4xl">
-              O que é necessário para participar?
+              Cadastro no SICAF: o que é necessário para participar
             </h2>
             <p className="mt-4 leading-relaxed text-muted-foreground">
-              O SICAF é um sistema oficial utilizado no processo de cadastramento e habilitação de
-              fornecedores em contratações públicas. Dependendo da oportunidade, a empresa poderá
-              precisar apresentar informações cadastrais, documentos, certidões, qualificação
-              técnica, regularidade fiscal e dados econômico-financeiros.
+              O SICAF é o sistema oficial usado no cadastramento e na habilitação de fornecedores em
+              contratações públicas federais. Para o cadastro no SICAF, a empresa geralmente precisa
+              apresentar informações cadastrais, documentos, certidões, qualificação técnica,
+              regularidade fiscal e dados econômico-financeiros — conforme o edital.
             </p>
 
             <div className="mt-6 flex items-start gap-3 rounded-2xl border border-gold/40 bg-gold-soft p-5">
               <Info className="mt-0.5 size-5 shrink-0 text-foreground/70" aria-hidden />
               <p className="text-sm leading-relaxed font-medium">
                 Cada contratação possui regras próprias. Antes de participar, consulte o edital e
-                verifique todas as exigências.
+                verifique todas as exigências. Veja também o guia completo de{" "}
+                <Link to="/cadastro-no-sicaf" className="font-bold text-foreground underline-offset-2 hover:underline">
+                  cadastro no SICAF
+                </Link>
+                .
               </p>
             </div>
 
-            <Button
-              size="lg"
-              className="mt-8 h-14 px-7 text-base"
-              onClick={() => openTriage("cadastro-sicaf")}
-            >
-              Preciso de ajuda com o SICAF
-            </Button>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Button
+                size="lg"
+                className="h-14 px-7 text-base"
+                onClick={() => openTriage("cadastro-sicaf")}
+              >
+                Preciso de ajuda com o SICAF
+              </Button>
+              <Button size="lg" variant="outline" className="h-14 px-7 text-base" asChild>
+                <Link to="/cadastro-no-sicaf">Guia de cadastro no SICAF</Link>
+              </Button>
+            </div>
           </div>
 
           <ul className="grid gap-4 sm:grid-cols-2">

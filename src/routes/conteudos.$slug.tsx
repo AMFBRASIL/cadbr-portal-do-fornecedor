@@ -1,7 +1,14 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowRight, ExternalLink } from "lucide-react";
-import { ARTICLES, getArticle, type Article } from "@/lib/articles";
+import { ARTICLE_DEFAULT_DATES, ARTICLES, getArticle, type Article } from "@/lib/articles";
 import { CATEGORIES, SITE } from "@/lib/site";
+import {
+  articleJsonLd,
+  breadcrumbJsonLd,
+  buildPageHead,
+  faqJsonLd,
+  jsonLdScript,
+} from "@/lib/seo";
 import { Breadcrumbs } from "@/components/site/breadcrumbs";
 import { Button } from "@/components/ui/button";
 import {
@@ -23,55 +30,34 @@ export const Route = createFileRoute("/conteudos/$slug")({
   head: ({ params, loaderData }) => {
     const article = loaderData?.article as Article | undefined;
     if (!article) return {};
-    const url = `/conteudos/${params.slug}`;
+    const path = `/conteudos/${params.slug}`;
+    const page = buildPageHead({
+      title: `${article.title} | ${SITE.name}`,
+      description: article.description,
+      path,
+      type: "article",
+      keywords: `${article.topic}, SICAF, cadastro no SICAF, licitações públicas, ${SITE.name}`,
+    });
     return {
-      meta: [
-        { title: `${article.title} | ${SITE.name}` },
-        { name: "description", content: article.description },
-        { property: "og:title", content: article.title },
-        { property: "og:description", content: article.description },
-        { property: "og:type", content: "article" },
-        { property: "og:url", content: url },
-        { name: "twitter:card", content: "summary_large_image" },
-      ],
-      links: [{ rel: "canonical", href: url }],
+      ...page,
       scripts: [
-        {
-          type: "application/ld+json",
-          children: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Article",
+        jsonLdScript(
+          articleJsonLd({
             headline: article.h1,
             description: article.description,
-            inLanguage: "pt-BR",
-            mainEntityOfPage: url,
-            publisher: { "@type": "Organization", name: SITE.name },
+            path,
+            datePublished: article.datePublished ?? ARTICLE_DEFAULT_DATES.datePublished,
+            dateModified: article.dateModified ?? ARTICLE_DEFAULT_DATES.dateModified,
           }),
-        },
-        {
-          type: "application/ld+json",
-          children: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: article.faq.map((f) => ({
-              "@type": "Question",
-              name: f.q,
-              acceptedAnswer: { "@type": "Answer", text: f.a },
-            })),
-          }),
-        },
-        {
-          type: "application/ld+json",
-          children: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "Início", item: "/" },
-              { "@type": "ListItem", position: 2, name: "Conteúdos", item: "/conteudos" },
-              { "@type": "ListItem", position: 3, name: article.h1, item: url },
-            ],
-          }),
-        },
+        ),
+        jsonLdScript(faqJsonLd(article.faq)),
+        jsonLdScript(
+          breadcrumbJsonLd([
+            { name: "Início", path: "/" },
+            { name: "Conteúdos", path: "/conteudos" },
+            { name: article.h1, path },
+          ]),
+        ),
       ],
     };
   },
@@ -196,6 +182,23 @@ function ArticlePage() {
                   <li key={s}>· {s}</li>
                 ))}
               </ul>
+            </div>
+          )}
+
+          {(article.topic === "SICAF" ||
+            article.slug.includes("sicaf") ||
+            article.ctaCategory === "cadastro-sicaf") && (
+            <div className="rounded-2xl border border-primary/25 bg-primary/5 p-5">
+              <h2 className="text-sm font-bold tracking-wider uppercase">Guia completo</h2>
+              <p className="mt-2 text-sm text-muted-foreground">
+                Passo a passo do cadastro no SICAF: etapas, documentos e erros comuns.
+              </p>
+              <Link
+                to="/cadastro-no-sicaf"
+                className="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
+              >
+                Cadastro no SICAF <ArrowRight className="size-4" aria-hidden />
+              </Link>
             </div>
           )}
 

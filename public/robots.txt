@@ -1,3 +1,6 @@
+# CADBR LICITAÇÕES — https://www.cadbr.com.br
+# Portal de orientação sobre licitações, SICAF e Compras.gov.br
+
 User-agent: Googlebot
 Allow: /
 
@@ -10,5 +13,38 @@ Allow: /
 User-agent: facebookexternalhit
 Allow: /
 
+# AI / LLM crawlers — leitura permitida para visibilidade
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bytespider
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
 User-agent: *
 Allow: /
+
+Sitemap: https://www.cadbr.com.br/sitemap.xml

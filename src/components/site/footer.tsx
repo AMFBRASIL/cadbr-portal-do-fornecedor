@@ -50,8 +50,8 @@ export function Footer() {
               </Link>
             </li>
             <li>
-              <Link to="/" hash="sicaf" className="hover:text-navy-foreground">
-                SICAF
+              <Link to="/cadastro-no-sicaf" className="hover:text-navy-foreground">
+                Cadastro no SICAF
               </Link>
             </li>
             <li>

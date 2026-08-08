@@ -1,28 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LegalPage } from "@/components/site/legal-page";
 import { SITE } from "@/lib/site";
+import { buildPageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/politica-de-cookies")({
   component: CookiesPage,
-  head: () => ({
-    meta: [
-      { title: `Política de Cookies | ${SITE.name}` },
-      {
-        name: "description",
-        content:
-          "Quais cookies o portal utiliza, para que servem e como gerenciar suas preferências de privacidade.",
-      },
-      { property: "og:title", content: "Política de Cookies" },
-      {
-        property: "og:description",
-        content: "Cookies utilizados no portal e como gerenciar suas preferências.",
-      },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "/politica-de-cookies" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-    links: [{ rel: "canonical", href: "/politica-de-cookies" }],
-  }),
+  head: () =>
+    buildPageHead({
+      title: `Política de Cookies | ${SITE.name}`,
+      description:
+        "Quais cookies o portal utiliza, para que servem e como gerenciar suas preferências de privacidade.",
+      path: "/politica-de-cookies",
+    }),
 });
 
 function CookiesPage() {

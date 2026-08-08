@@ -1,29 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LegalPage } from "@/components/site/legal-page";
 import { LEGAL_DISCLAIMER, SITE } from "@/lib/site";
+import { buildPageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/politica-de-privacidade")({
   component: PrivacyPage,
-  head: () => ({
-    meta: [
-      { title: `Política de Privacidade | ${SITE.name}` },
-      {
-        name: "description",
-        content:
-          "Como o portal coleta, utiliza, armazena e protege os dados pessoais informados na pré-triagem, em conformidade com a LGPD.",
-      },
-      { property: "og:title", content: "Política de Privacidade" },
-      {
-        property: "og:description",
-        content: "Tratamento de dados pessoais no portal, em conformidade com a LGPD.",
-      },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "/politica-de-privacidade" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "robots", content: "index, follow" },
-    ],
-    links: [{ rel: "canonical", href: "/politica-de-privacidade" }],
-  }),
+  head: () =>
+    buildPageHead({
+      title: `Política de Privacidade | ${SITE.name}`,
+      description:
+        "Como o portal coleta, utiliza, armazena e protege os dados pessoais informados na pré-triagem, em conformidade com a LGPD.",
+      path: "/politica-de-privacidade",
+    }),
 });
 
 function PrivacyPage() {

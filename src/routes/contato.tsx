@@ -3,30 +3,19 @@ import { Mail, MessageCircle } from "lucide-react";
 import { Breadcrumbs } from "@/components/site/breadcrumbs";
 import { Button } from "@/components/ui/button";
 import { LEGAL_DISCLAIMER, SITE } from "@/lib/site";
+import { buildPageHead } from "@/lib/seo";
 import { trackEvent } from "@/lib/analytics";
 import { useTriage } from "@/components/site/triage-context";
 
 export const Route = createFileRoute("/contato")({
   component: ContatoPage,
-  head: () => ({
-    meta: [
-      { title: `Contato | ${SITE.name}` },
-      {
-        name: "description",
-        content:
-          "Fale com o portal de orientação sobre licitações, SICAF e Compras.gov.br ou faça a pré-triagem gratuita em dois minutos.",
-      },
-      { property: "og:title", content: `Contato — ${SITE.name}` },
-      {
-        property: "og:description",
-        content: "Canais de contato e pré-triagem gratuita para empresas interessadas em licitar.",
-      },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "/contato" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-    links: [{ rel: "canonical", href: "/contato" }],
-  }),
+  head: () =>
+    buildPageHead({
+      title: `Contato | ${SITE.name}`,
+      description:
+        "Fale com o portal de orientação sobre licitações, SICAF e Compras.gov.br ou faça a pré-triagem gratuita em dois minutos.",
+      path: "/contato",
+    }),
 });
 
 function ContatoPage() {

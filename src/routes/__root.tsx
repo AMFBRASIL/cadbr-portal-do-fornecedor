@@ -12,6 +12,12 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SITE } from "@/lib/site";
+import {
+  absoluteUrl,
+  jsonLdScript,
+  organizationJsonLd,
+  websiteJsonLd,
+} from "@/lib/seo";
 import { Header } from "@/components/site/header";
 import { Footer } from "@/components/site/footer";
 import { TriageProvider } from "@/components/site/triage-context";
@@ -86,14 +92,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: `${SITE.name} — Orientação em Licitações Públicas` },
       { name: "description", content: SITE.tagline },
+      { name: "keywords", content: SITE.keywords },
+      { name: "robots", content: "index, follow" },
+      { name: "author", content: SITE.name },
       { property: "og:site_name", content: SITE.name },
       { property: "og:type", content: "website" },
       { property: "og:locale", content: "pt_BR" },
+      { property: "og:url", content: SITE.url },
+      { property: "og:image", content: absoluteUrl(SITE.ogImage) },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "theme-color", content: "#ffffff" },
+      { name: "twitter:image", content: absoluteUrl(SITE.ogImage) },
+      { name: "theme-color", content: "#0B1F3A" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
+      { rel: "canonical", href: SITE.url },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
@@ -102,29 +115,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { rel: "icon", href: "/favicon.png", type: "image/png" },
     ],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          name: SITE.name,
-          description: SITE.tagline,
-          email: SITE.email,
-          areaServed: "BR",
-        }),
-      },
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "WebSite",
-          name: SITE.name,
-          inLanguage: "pt-BR",
-          description: SITE.tagline,
-        }),
-      },
-    ],
+    scripts: [jsonLdScript(organizationJsonLd()), jsonLdScript(websiteJsonLd())],
   }),
   shellComponent: RootShell,
   component: RootComponent,

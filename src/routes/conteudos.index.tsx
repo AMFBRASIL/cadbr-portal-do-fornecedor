@@ -2,44 +2,31 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArrowRight, BookOpen } from "lucide-react";
 import { ARTICLES } from "@/lib/articles";
 import { SITE } from "@/lib/site";
+import { breadcrumbJsonLd, buildPageHead, jsonLdScript } from "@/lib/seo";
 import { trackEvent } from "@/lib/analytics";
 import { Breadcrumbs } from "@/components/site/breadcrumbs";
 
 export const Route = createFileRoute("/conteudos/")({
   component: ConteudosPage,
-  head: () => ({
-    meta: [
-      { title: `Central de Conhecimento sobre Licitações | ${SITE.name}` },
-      {
-        name: "description",
-        content:
-          "Guias práticos sobre licitações públicas, SICAF, Compras.gov.br, documentos, certidões e oportunidades para empresas de todos os portes.",
-      },
-      { property: "og:title", content: "Central de conhecimento sobre licitações" },
-      {
-        property: "og:description",
-        content:
-          "Artigos aprofundados sobre como participar de licitações, regularizar o SICAF e encontrar oportunidades públicas.",
-      },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "/conteudos" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-    links: [{ rel: "canonical", href: "/conteudos" }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "BreadcrumbList",
-          itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Início", item: "/" },
-            { "@type": "ListItem", position: 2, name: "Conteúdos", item: "/conteudos" },
-          ],
-        }),
-      },
-    ],
-  }),
+  head: () => {
+    const page = buildPageHead({
+      title: `Central de Conhecimento sobre Licitações | ${SITE.name}`,
+      description:
+        "Guias práticos sobre licitações públicas, cadastro no SICAF, Compras.gov.br, documentos, certidões e oportunidades para empresas de todos os portes.",
+      path: "/conteudos",
+    });
+    return {
+      ...page,
+      scripts: [
+        jsonLdScript(
+          breadcrumbJsonLd([
+            { name: "Início", path: "/" },
+            { name: "Conteúdos", path: "/conteudos" },
+          ]),
+        ),
+      ],
+    };
+  },
 });
 
 function ConteudosPage() {

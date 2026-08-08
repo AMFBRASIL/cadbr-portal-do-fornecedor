@@ -18,8 +18,15 @@ export interface Article {
   related: string[];
   ctaCategory: CategoryId;
   ctaText: string;
+  datePublished?: string;
+  dateModified?: string;
   sources?: { label: string; url: string }[];
 }
+
+export const ARTICLE_DEFAULT_DATES = {
+  datePublished: "2025-06-01",
+  dateModified: "2026-03-15",
+} as const;
 
 const OFICIAL = [
   { label: "Compras.gov.br — portal oficial de compras públicas", url: "https://www.gov.br/compras" },
@@ -162,13 +169,15 @@ export const ARTICLES: Article[] = [
   },
   {
     slug: "o-que-e-sicaf",
-    title: "O Que é o SICAF e Para Que Serve",
+    title: "O Que é o SICAF e Para Que Serve no Cadastro de Fornecedores",
     h1: "O que é o SICAF e para que serve",
     description:
-      "Entenda o que é o SICAF, qual a sua função no cadastramento e na habilitação de fornecedores e como ele se relaciona com o Compras.gov.br.",
+      "Entenda o que é o SICAF, como funciona o cadastro no SICAF para habilitação de fornecedores e a relação com o Compras.gov.br.",
     topic: "SICAF",
+    datePublished: "2025-06-01",
+    dateModified: "2026-03-15",
     intro:
-      "O SICAF é o sistema oficial utilizado no processo de cadastramento e habilitação de fornecedores em contratações públicas federais. Ele funciona como um cadastro central em que ficam registrados os dados da empresa, a documentação e a situação de regularidade.",
+      "O SICAF é o sistema oficial utilizado no processo de cadastramento e habilitação de fornecedores em contratações públicas federais. Ele funciona como um cadastro central em que ficam registrados os dados da empresa, a documentação e a situação de regularidade. Se você busca fazer o cadastro no SICAF, este guia explica o papel do sistema na prática.",
     blocks: [
       {
         heading: "Para que o cadastro serve na prática",
@@ -216,13 +225,15 @@ export const ARTICLES: Article[] = [
   },
   {
     slug: "documentos-exigidos-no-sicaf",
-    title: "Quais Documentos São Exigidos no SICAF",
+    title: "Documentos Exigidos no Cadastro no SICAF",
     h1: "Quais documentos são exigidos no SICAF",
     description:
-      "Checklist dos documentos e certidões normalmente solicitados no cadastro de fornecedores, organizados por tipo de habilitação.",
+      "Checklist dos documentos e certidões normalmente solicitados no cadastro no SICAF, organizados por tipo de habilitação.",
     topic: "Documentação",
+    datePublished: "2025-06-15",
+    dateModified: "2026-03-15",
     intro:
-      "A lista exata varia conforme o porte da empresa, a natureza jurídica e o objeto que ela pretende fornecer. Ainda assim, existe um conjunto de documentos que aparece na maioria dos cadastros e contratações.",
+      "A lista exata varia conforme o porte da empresa, a natureza jurídica e o objeto que ela pretende fornecer. Ainda assim, existe um conjunto de documentos que aparece na maioria dos cadastros no SICAF e nas contratações públicas.",
     blocks: [
       {
         heading: "Habilitação jurídica",
@@ -271,13 +282,15 @@ export const ARTICLES: Article[] = [
   },
   {
     slug: "como-renovar-o-sicaf",
-    title: "Como Atualizar ou Renovar o SICAF",
+    title: "Como Atualizar ou Renovar o Cadastro no SICAF",
     h1: "Como atualizar ou renovar o SICAF",
     description:
-      "O que fazer quando o cadastro de fornecedor está vencido, incompleto ou com dados desatualizados, e como evitar novas irregularidades.",
+      "O que fazer quando o cadastro no SICAF está vencido, incompleto ou desatualizado, e como evitar novas irregularidades.",
     topic: "SICAF",
+    datePublished: "2025-07-01",
+    dateModified: "2026-03-15",
     intro:
-      "Não existe uma renovação única e anual: o cadastro fica regular enquanto os documentos que o compõem estiverem válidos. Atualizar significa substituir o que venceu e corrigir o que mudou na empresa.",
+      "Não existe uma renovação única e anual: o cadastro no SICAF fica regular enquanto os documentos que o compõem estiverem válidos. Atualizar significa substituir o que venceu e corrigir o que mudou na empresa.",
     blocks: [
       {
         heading: "Levante o que está vencido",

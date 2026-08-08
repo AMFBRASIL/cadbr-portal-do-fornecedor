@@ -6,10 +6,10 @@ import { SITE } from "@/lib/site";
 import { useTriage } from "./triage-context";
 import { Logo } from "./logo";
 
-const NAV: { label: string; to: "/" | "/conteudos"; hash?: string }[] = [
+const NAV: { label: string; to: "/" | "/conteudos" | "/cadastro-no-sicaf"; hash?: string }[] = [
   { label: "Início", to: "/" },
   { label: "Como participar", to: "/", hash: "como-funciona" },
-  { label: "SICAF", to: "/", hash: "sicaf" },
+  { label: "Cadastro no SICAF", to: "/cadastro-no-sicaf" },
   { label: "Licitações", to: "/", hash: "oportunidades" },
   { label: "Para fornecedores", to: "/", hash: "credibilidade" },
   { label: "Conteúdos", to: "/conteudos" },

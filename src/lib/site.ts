@@ -2,11 +2,16 @@ export const SITE = {
   name: "CADBR LICITAÇÕES",
   fullName: "CADBR LICITAÇÕES — Portal de Orientação em Licitações",
   tagline: "Portal independente de orientação sobre licitações, SICAF e Compras.gov.br",
+  url: "https://www.cadbr.com.br",
+  ogImage: "/og-default.png",
+  keywords:
+    "SICAF, cadastro no SICAF, cadastro SICAF, licitações públicas, Compras.gov.br, fornecedor governo, habilitação SICAF, renovação SICAF, CADBR",
   partnerName: "CADBR",
   partnerUrl: "https://www.cadbr.com.br",
   whatsapp: "https://wa.me/551121220202",
   whatsappDisplay: "(11) 2122-0202",
   email: "contato@cadbr.com.br",
+  logoPath: "/favicon.png",
 } as const;
 
 export const LEGAL_DISCLAIMER =
