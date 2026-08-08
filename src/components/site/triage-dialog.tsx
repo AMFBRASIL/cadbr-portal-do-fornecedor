@@ -108,7 +108,7 @@ export function TriageDialog() {
   }, [open, category]);
 
   const selected = useMemo(
-    () => CATEGORIES.find((c) => c.id === answers.categoria) ?? CATEGORIES[0],
+    () => CATEGORIES.find((c) => c.id === answers.categoria) ?? CATEGORIES[0]!,
     [answers.categoria],
   );
 
