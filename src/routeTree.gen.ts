@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ContatoRouteImport } from './routes/contato'
 import { Route as PoliticaDeCookiesRouteImport } from './routes/politica-de-cookies'
 import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TermosDeUsoRouteImport } from './routes/termos-de-uso'
 import { Route as ConteudosIndexRouteImport } from './routes/conteudos.index'
 import { Route as ConteudosSlugRouteImport } from './routes/conteudos.$slug'
@@ -36,6 +37,11 @@ const PoliticaDeCookiesRoute = PoliticaDeCookiesRouteImport.update({
 const PoliticaDePrivacidadeRoute = PoliticaDePrivacidadeRouteImport.update({
   id: '/politica-de-privacidade',
   path: '/politica-de-privacidade',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TermosDeUsoRoute = TermosDeUsoRouteImport.update({
@@ -64,6 +70,7 @@ export interface FileRoutesByFullPath {
   '/contato': typeof ContatoRoute
   '/politica-de-cookies': typeof PoliticaDeCookiesRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
   '/conteudos/$slug': typeof ConteudosSlugRoute
   '/conteudos/': typeof ConteudosIndexRoute
@@ -74,6 +81,7 @@ export interface FileRoutesByTo {
   '/contato': typeof ContatoRoute
   '/politica-de-cookies': typeof PoliticaDeCookiesRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
   '/conteudos/$slug': typeof ConteudosSlugRoute
   '/conteudos': typeof ConteudosIndexRoute
@@ -85,6 +93,7 @@ export interface FileRoutesById {
   '/contato': typeof ContatoRoute
   '/politica-de-cookies': typeof PoliticaDeCookiesRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/termos-de-uso': typeof TermosDeUsoRoute
   '/conteudos/$slug': typeof ConteudosSlugRoute
   '/conteudos/': typeof ConteudosIndexRoute
@@ -97,6 +106,7 @@ export interface FileRouteTypes {
     | '/contato'
     | '/politica-de-cookies'
     | '/politica-de-privacidade'
+    | '/sitemap.xml'
     | '/termos-de-uso'
     | '/conteudos/$slug'
     | '/conteudos/'
@@ -107,6 +117,7 @@ export interface FileRouteTypes {
     | '/contato'
     | '/politica-de-cookies'
     | '/politica-de-privacidade'
+    | '/sitemap.xml'
     | '/termos-de-uso'
     | '/conteudos/$slug'
     | '/conteudos'
@@ -117,6 +128,7 @@ export interface FileRouteTypes {
     | '/contato'
     | '/politica-de-cookies'
     | '/politica-de-privacidade'
+    | '/sitemap.xml'
     | '/termos-de-uso'
     | '/conteudos/$slug'
     | '/conteudos/'
@@ -128,6 +140,7 @@ export interface RootRouteChildren {
   ContatoRoute: typeof ContatoRoute
   PoliticaDeCookiesRoute: typeof PoliticaDeCookiesRoute
   PoliticaDePrivacidadeRoute: typeof PoliticaDePrivacidadeRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermosDeUsoRoute: typeof TermosDeUsoRoute
   ConteudosSlugRoute: typeof ConteudosSlugRoute
   ConteudosIndexRoute: typeof ConteudosIndexRoute
@@ -162,6 +175,13 @@ declare module '@tanstack/react-router' {
       path: '/politica-de-privacidade'
       fullPath: '/politica-de-privacidade'
       preLoaderRoute: typeof PoliticaDePrivacidadeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/termos-de-uso': {
@@ -200,6 +220,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContatoRoute: ContatoRoute,
   PoliticaDeCookiesRoute: PoliticaDeCookiesRoute,
   PoliticaDePrivacidadeRoute: PoliticaDePrivacidadeRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermosDeUsoRoute: TermosDeUsoRoute,
   ConteudosSlugRoute: ConteudosSlugRoute,
   ConteudosIndexRoute: ConteudosIndexRoute,
