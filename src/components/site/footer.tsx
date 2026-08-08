@@ -115,7 +115,7 @@ export function Footer() {
             href={SITE.partnerUrl}
             target="_blank"
             rel="noopener"
-            onClick={() => trackEvent("cadbrasil_click", { origem: "rodape" })}
+            onClick={() => trackEvent("cadbr_click", { origem: "rodape" })}
             className="mt-3 inline-flex items-center gap-1.5 text-sm text-navy-foreground/80 hover:text-navy-foreground"
           >
             {SITE.partnerName} — atendimento especializado
