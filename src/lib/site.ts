@@ -1,12 +1,12 @@
 export const SITE = {
-  name: "CAD | BRASIL",
-  fullName: "CAD | BRASIL — Portal de Orientação em Licitações",
+  name: "CADBR LICITAÇÕES",
+  fullName: "CADBR LICITAÇÕES — Portal de Orientação em Licitações",
   tagline: "Portal independente de orientação sobre licitações, SICAF e Compras.gov.br",
-  partnerName: "CADBRASIL",
-  partnerUrl: "https://www.cadbrasil.com.br",
+  partnerName: "CADBR",
+  partnerUrl: "https://www.cadbr.com.br",
   whatsapp: "https://wa.me/551121220202",
   whatsappDisplay: "(11) 2122-0202",
-  email: "contato@cadbrasil.com.br",
+  email: "contato@cadbr.com.br",
 } as const;
 
 export const LEGAL_DISCLAIMER =

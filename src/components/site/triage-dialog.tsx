@@ -366,7 +366,7 @@ export function TriageDialog() {
                   target="_blank"
                   rel="noopener"
                   onClick={() => {
-                    trackEvent("cadbrasil_click", { categoria: selected.id });
+                    trackEvent("cadbr_click", { categoria: selected.id });
                     toast.success("Encaminhando para o atendimento especializado.");
                   }}
                 >

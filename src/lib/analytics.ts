@@ -20,7 +20,7 @@ export type ConversionEvent =
   | "triagem_etapa_concluida"
   | "formulario_enviado"
   | "whatsapp_click"
-  | "cadbrasil_click"
+  | "cadbr_click"
   | "artigo_click"
   | "triagem_concluida";
 
