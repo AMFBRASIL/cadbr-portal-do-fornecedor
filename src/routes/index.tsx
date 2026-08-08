@@ -58,7 +58,7 @@ export const Route = createFileRoute("/")({
   component: Home,
   head: () => ({
     meta: [
-      { title: "Como Participar de Licitações e Vender para o Governo" },
+      { title: `${SITE.name} — Como Participar de Licitações e Vender para o Governo` },
       {
         name: "description",
         content:
@@ -66,7 +66,7 @@ export const Route = createFileRoute("/")({
       },
       {
         property: "og:title",
-        content: "Como Participar de Licitações e Vender para o Governo",
+        content: `${SITE.name} — Como Participar de Licitações e Vender para o Governo`,
       },
       {
         property: "og:description",
