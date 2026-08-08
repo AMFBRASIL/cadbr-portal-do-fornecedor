@@ -1,11 +1,12 @@
 export const SITE = {
-  name: "Licita Certa",
-  fullName: "Licita Certa — Portal de Orientação em Licitações",
+  name: "CAD | BRASIL",
+  fullName: "CAD | BRASIL — Portal de Orientação em Licitações",
   tagline: "Portal independente de orientação sobre licitações, SICAF e Compras.gov.br",
   partnerName: "CADBRASIL",
   partnerUrl: "https://www.cadbrasil.com.br",
-  whatsapp: "https://wa.me/5500000000000",
-  email: "contato@licitacerta.com.br",
+  whatsapp: "https://wa.me/551121220202",
+  whatsappDisplay: "(11) 2122-0202",
+  email: "contato@cadbrasil.com.br",
 } as const;
 
 export const LEGAL_DISCLAIMER =

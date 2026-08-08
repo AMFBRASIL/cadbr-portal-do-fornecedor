@@ -11,8 +11,7 @@ export function Footer() {
       <div className="container-page grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-4">
         <div>
           <div className="flex items-center gap-2.5">
-            <Logo className="size-9 shrink-0" />
-            <span className="font-display text-lg font-extrabold">{SITE.name}</span>
+            <Logo className="h-9 w-auto shrink-0 text-navy-foreground" />
           </div>
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-navy-foreground/75">
             Portal independente de orientação sobre licitações públicas, cadastro de fornecedores,
