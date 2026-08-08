@@ -41,14 +41,9 @@ export function Header() {
       </a>
       <div className="container-page grid grid-cols-[minmax(0,1fr)_auto] items-center gap-4 py-3">
         <Link to="/" className="flex min-w-0 items-center gap-2.5" aria-label={`${SITE.name} — início`}>
-          <Logo className="size-9 shrink-0" />
-          <span className="min-w-0">
-            <span className="block truncate font-display text-base leading-tight font-extrabold">
-              {SITE.name}
-            </span>
-            <span className="hidden truncate text-[11px] text-muted-foreground sm:block">
-              Orientação em licitações públicas
-            </span>
+          <Logo className="h-9 w-auto shrink-0 text-foreground" />
+          <span className="hidden min-w-0 truncate text-[11px] text-muted-foreground sm:block">
+            Orientação em licitações públicas
           </span>
         </Link>
 
