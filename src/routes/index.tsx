@@ -341,21 +341,19 @@ function Home() {
 
           <ul className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {ARTICLES.slice(0, 6).map((article) => (
-              <li key={article.slug} className="card-interactive relative flex flex-col p-6">
-                <p className="text-xs font-bold tracking-wider text-primary uppercase">
-                  {article.topic}
-                </p>
-                <h3 className="mt-3 text-base leading-snug font-bold">
-                  <Link
-                    to="/conteudos/$slug"
-                    params={{ slug: article.slug }}
-                    onClick={() => trackEvent("artigo_click", { slug: article.slug })}
-                    className="after:absolute after:inset-0 hover:text-primary"
-                  >
-                    {article.h1}
-                  </Link>
-                </h3>
-                <p className="mt-2 flex-1 text-sm text-muted-foreground">{article.description}</p>
+              <li key={article.slug}>
+                <Link
+                  to="/conteudos/$slug"
+                  params={{ slug: article.slug }}
+                  onClick={() => trackEvent("artigo_click", { slug: article.slug })}
+                  className="card-interactive flex h-full flex-col p-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                >
+                  <p className="text-xs font-bold tracking-wider text-primary uppercase">
+                    {article.topic}
+                  </p>
+                  <h3 className="mt-3 text-base leading-snug font-bold">{article.h1}</h3>
+                  <p className="mt-2 flex-1 text-sm text-muted-foreground">{article.description}</p>
+                </Link>
               </li>
             ))}
           </ul>
