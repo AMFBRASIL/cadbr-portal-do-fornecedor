@@ -45,7 +45,7 @@ export const CATEGORIES: TriageCategory[] = [
     description:
       "Minha empresa ainda não vende para órgãos públicos e preciso entender como começar.",
     cta: "Quero começar",
-    partnerPath: "/licitacoes",
+    partnerPath: "https://www.cadbrasil.com.br/credenciamento",
     recommendation:
       "Sua empresa precisa de um diagnóstico inicial: verificação de CNAEs, situação cadastral, documentos básicos e preparação do cadastro de fornecedor.",
     steps: [
